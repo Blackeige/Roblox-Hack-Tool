@@ -85,22 +85,11 @@
       display: block;
       width: 100%;
       padding: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       border-radius: 5px;
       border: none;
       outline: none;
       font-size: 14px;
-    }
-
-    .copy-btn {
-      margin-bottom: 15px;
-      padding: 10px;
-      width: 100%;
-      background-color: #444;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
     }
 
     button {
@@ -155,8 +144,7 @@
           <p>Paste your player file in the box below, then click "Start Hacking"!<br>
              If you don’t know how to find a user's "player file" then go ahead and watch "How to use"
           </p>
-          <input type="text" id="playerFile" placeholder="📄 Enter player file">
-          <button class="copy-btn" onclick="copyPlayerFile()">📋 Copy Player File</button>
+          <input type="text" placeholder="📄 Enter player file">
           <button>Start Hacking!</button>
         </div>
       </div>
@@ -165,22 +153,11 @@
         <h3>How to use</h3>
         <p>Video Tutorial</p>
         <video controls>
-          <source src="https://cdn.discordapp.com/attachments/111111111111111111/1234567890123456789/tutorial.mp4" type="video/mp4">
+          <source src="https://example.com/tutorial.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
     </section>
   </main>
-
-  <script>
-    function copyPlayerFile() {
-      const input = document.getElementById("playerFile");
-      input.select();
-      input.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(input.value).then(() => {
-        alert("Player file copied to clipboard!");
-      });
-    }
-  </script>
 </body>
 </html>
