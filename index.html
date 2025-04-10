@@ -237,5 +237,21 @@
     <p>Need help? Want tips? Or just want more tools? Join us now!</p>
     <a href="https://discord.gg/5QkYaKfu" target="_blank">🚀 Join Discord</a>
   </div>
+<script>
+    let countdown = 6;
+    const popup = document.getElementById('popup');
+    const timer = document.getElementById('popup-timer');
+
+    const interval = setInterval(() => {
+      countdown--;
+      timer.textContent = countdown + 's';
+
+      if (countdown <= 0) {
+        clearInterval(interval);
+        popup.classList.add('hidden');
+      }
+    }, 1000);
+  </script>
+  
 </body>
 </html>
