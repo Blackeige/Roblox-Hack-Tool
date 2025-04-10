@@ -171,6 +171,19 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    /* Timer styling */
+    .popup-timer {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background: #333;
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -210,16 +223,26 @@
 
   <!-- 👇 Discord Pop-up -->
   <div id="popup">
+    <div class="popup-timer" id="popup-timer">6s</div>
     <h2>🔥 Join our Discord Server</h2>
     <p>Need help? Want tips? Or just chill with the community? Join us now!</p>
     <a href="https://discord.gg/yourserver" target="_blank">🚀 Join Discord</a>
   </div>
 
   <script>
-    setTimeout(() => {
-      const popup = document.getElementById('popup');
-      popup.classList.add('hidden');
-    }, 6000); // 6 seconds
+    let countdown = 6;
+    const popup = document.getElementById('popup');
+    const timer = document.getElementById('popup-timer');
+
+    const interval = setInterval(() => {
+      countdown--;
+      timer.textContent = countdown + 's';
+
+      if (countdown <= 0) {
+        clearInterval(interval);
+        popup.classList.add('hidden');
+      }
+    }, 1000);
   </script>
 </body>
 </html>
