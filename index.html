@@ -138,7 +138,7 @@
       width: 600px;
       text-align: center;
       opacity: 1;
-      transition: opacity 0.5s ease;
+      transition: opacity 1.5s ease; /* Adjusted for fade-out effect */
     }
 
     #popup h2 {
@@ -240,6 +240,7 @@
 
       if (countdown <= 0) {
         clearInterval(interval);
+        // Initiate fade-out for the popup
         popup.classList.add('hidden');
       }
     }, 1000);
